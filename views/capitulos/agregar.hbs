@@ -1,0 +1,30 @@
+<script>
+if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') == undefined){
+    window.location = "/login";
+    console.log("login")
+}</script>
+<div class="row justify-content-between bg-light modal-body" id="menu">
+    <div><img src="../../images/Logo.png" width="250px"></div>
+</div>
+<a href="/capitulos">Ir lista capitulos</a>
+<form class="form" action="/capitulos" method="post">
+    <div class="form-group">
+    <label for="priority">Excursión:</label>
+    <select class="form-control" id="id_excursion" name="id_excursion">
+    {{#each excursiones}}
+    <option value="{{id}}">{{titulo}}</option>
+    {{/each}}
+    </select>
+  </div>
+  <div>
+    <label for="title">Link de youtube:</label>
+    <input type="text" class="form-control" id="youtube_url" placeholder="Link del video" name="youtube_url">
+  </div>
+  <button type="submit" class="btn btn-default btn-success">
+    Crear
+  </button>
+</form>
+
+{{#each scripts}}
+  <script src="{{script}}"></script>
+{{/each}}

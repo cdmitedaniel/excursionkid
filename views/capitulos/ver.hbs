@@ -1,0 +1,33 @@
+<script>
+if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') == undefined){
+    window.location = "/login";
+    console.log("login")
+}</script>
+<div class="row justify-content-between bg-light modal-body" id="menu">
+    <div><img src="../../images/Logo.png" width="250px"></div>
+</div>
+<a href="/capitulos">Ir lista de capitulos</a>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <img src="{{excursion_cap.portada}}" class="img-circle float-right" width="50" height="50">
+    <h2 class="panel-title">{{excursion_cap.titulo}}</h2>
+    <p>
+      {{excursion_cap.descripcion}}
+    </p>
+    <p>{{excursion_cap.id}}</p>
+  </div>
+  <div class="panel-footer text-center">
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{excursion_cap.youtube_url}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+  </div>
+</div>
+<form action="/capitulos/{{excursion_cap.id}}?_method=DELETE" method="post">
+
+  <a href="/capitulos/{{excursion_cap.id}}/edit" type="button" class="btn btn-default btn-warning">
+    Editar
+  </a>
+  <button type="submit" class="btn btn-default btn-danger">
+    Eliminar
+  </button>
+</form>

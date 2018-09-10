@@ -1,0 +1,31 @@
+<script>
+if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') == undefined){
+    window.location = "/login";
+    console.log("login")
+}</script>
+<div class="row justify-content-between bg-light modal-body" id="menu">
+    <div><img src="../../images/Logo.png" width="250px"></div>
+</div>
+<a href="/excursiones">Ir lista excursiones</a>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{excursion.titulo}}</h3>
+  </div>
+  <div class="panel-body">
+    {{excursion.descripcion}}
+  </div>
+  <div class="panel-footer">
+    <img src="{{excursion.portada}}" alt="">
+    <p>{{excursion.creditos}}</p>
+  </div>
+</div>
+<form action="/excursiones/{{excursion.id}}?_method=DELETE" method="post">
+
+  <a href="/excursiones/{{excursion.id}}/edit" type="button" class="btn btn-default btn-warning">
+    Editar
+  </a>
+  <button type="submit" class="btn btn-default btn-danger">
+    Eliminar
+  </button>
+</form>

@@ -1,0 +1,79 @@
+<h1>Lista de tareas</h1>
+
+{{#each Tareas}}
+<div>
+    <span id="span{{id}}">{{titulo}}</span>
+    <form action="/tareas/{{id}}?_method=DELETE" method="POST" style="display:inline-block">
+    <button type="submit">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </button>
+    </form>
+    <button onclick="editar({{id}})">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+    </button>
+
+   <button onclick="actualizar({{id}})">
+        <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+    </button>
+    
+<!--
+<form action="/tareas/{{id}}?_method=PUT" method="POST" style="display:inline-block">
+   <button type="submit">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+    </button>
+</form>
+    -->
+</div>
+
+{{/each}}
+
+<div id="data"></div>
+<!--<script>
+
+    $.getJSON("http://localhost:3000/tareas/", (tareas) => {
+        tareas.forEach(function(tarea){
+            console.log(tarea)
+            $("#data").append($("<div>"+tarea.titulo+"</div>"))
+        });
+    })
+</script>-->
+
+<form action="/tareas" method="POST">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Titulo" name="titulo">
+        <input type="text" class="form-control" placeholder="Descripcion" name="descripcion">
+        <select class="form-control" name="prioridad">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+    <button type="submit" href="" class="btn btn-primary">Agregar Tarea</button>
+</form>
+<div>
+
+<script>
+    function editar(id) {
+        $("#span"+id).attr("contenteditable", true).css("color", "blue")
+    }
+    function actualizar(id) {
+        let span = $("#span"+id);
+        span.attr("contenteditable", false).css("color", "black");
+
+        $.ajax({
+            url: '/tareas/'+id, // your api url
+            // jQuery < 1.9.0 -> use type
+            // jQuery >= 1.9.0 -> use method
+            method: 'PUT', // method is any HTTP method
+            data: { titulo: span.text() }, // data as js object
+            error: function(){
+                console.log("erro")
+            },
+            success: function(data) {
+                console.log(data)
+            }
+        });
+    }
+</script>
