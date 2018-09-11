@@ -17,7 +17,7 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
     <label for="priority">Capitulo:</label>
     <select class="form-control" id="rol" name="id_capitulo">
     {{#each capitulos}}
-    <option value="{{id}}">{{id}}</option>
+    <option value="{{id}}">{{titulo}}</option>
     {{/each}}
     </select>
   </div>

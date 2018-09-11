@@ -16,6 +16,8 @@ var preguntas = require('./routes/preguntas');
 var iniciar = require('./routes/iniciar');
 var tareas = require('./routes/tareas');
 
+var noticias = require('./routes/noticias');
+
 var login = require('./routes/login');
 var app = express();
 
@@ -57,7 +59,7 @@ app.use('/preguntas', preguntas);
 app.use('/login', login);
 app.use('/iniciar', iniciar);
 app.use('/tareas', tareas);
-
+app.use('/noticias', noticias);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

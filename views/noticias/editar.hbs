@@ -1,0 +1,19 @@
+
+
+<!--localhost:3000/noticias-->
+<form action="/noticias/{{noticia.id}}" method="post">
+
+<div class="form-group">
+    <label for="">Titulo</label>
+    <input type="text" class="form-group" name="titulo" value="{{noticia.titulo}}">
+
+    <br>
+     <label for="">Fecha</label>
+    <input type="text" class="form-group" name="fecha" value="{{noticia.fecha}}">
+</div>
+
+<button type="submit" class="btn btn-success">Actualizar</button>
+
+</form>
+
+<a href="/noticias" class="btn btn-primary">Regresar</a>

@@ -1,11 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
 const knex = require('../db/knex');
-
 var scripts = [{ script: '/js/pregunta_imagen.js' }];
 
-/* This router is mounted at /todo */
 router.get('/', (req, res) => {
   knex('pregunta')
     .select()
@@ -21,8 +18,6 @@ router.get('/agregar', (req, res) => {
     .then(capitulos => {
       res.render('preguntas/agregar', { capitulos: capitulos , scripts: scripts});
     });
-
-  //res.render('preguntas/agregar', {scripts: scripts});
 });
 
 router.get('/:id', (req, res) => {
@@ -31,6 +26,20 @@ router.get('/:id', (req, res) => {
   console.log(id)
   respondAndRenderTodo(id, res, 'preguntas/ver');
 });
+
+router.get('/consultar/:id', (req, res)=> {
+
+  let id = req.params.id;
+  console.log("--->"+id)
+  
+  knex('pregunta')
+  .where('id_capitulo', id)
+  .then((data)=>{
+    res.json(data);
+  })
+  
+
+})
 
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id;
@@ -80,8 +89,7 @@ router.delete('/:id', (req, res) => {
 });
 
 function validateTodoRenderError(req, res, callback) {
-  //if(validTodo(req.body)) {
-    
+
     const pregunta = {
       id_capitulo: req.body.id_capitulo,
       pregunta: req.body.pregunta,
@@ -94,18 +102,9 @@ function validateTodoRenderError(req, res, callback) {
       pregunta_2_img : req.body.pregunta_2_img_,
       pregunta_3_img : req.body.pregunta_3_img_,
       pregunta_4_img : req.body.pregunta_4_img_,
-
     };
-
     console.log(pregunta);
-
     callback(pregunta);
-  /*} else {
-    res.status( 500);
-    res.render('error', {
-      message:  'Invalid todo'
-    });
-  }*/
 }
 
 function respondAndRenderTodo(id, res, viewName) {

@@ -4,6 +4,8 @@ var router = express.Router();
 const knex = require('../db/knex');
 const youtubeParse = require('js-video-url-parser');
 /* GET home page. */
+
+//localhost:3000/iniciar
 router.get('/', function(req, res, next) {
 
         knex('usuarios')

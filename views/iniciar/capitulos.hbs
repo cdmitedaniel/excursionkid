@@ -6,13 +6,40 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title" id="pregunta-capitulo"></h4>
         </div>
         <div class="modal-body">
-          <p>Some text in the modal.</p>
+
+          <div>
+            <label><div class="jumbotron bg-info w-150 p-3">
+                <div class="radio">
+            <input type="radio" name="opcion" value="1" id="capitulo-opcion1">
+            <img src="" id="capitulo-opcion1-img" width="50" height="50"/>
+          </div></div></label>
+
+          <label><div class="jumbotron bg-info w-75 p-3">
+                <div class="radio">
+            <input type="radio" name="opcion" value="2" id="capitulo-opcion2">
+            <img src="" id="capitulo-opcion2-img" width="50" height="50"/>
+          </div></div></label>
+
+          <label><div class="jumbotron bg-info w-75 p-3">
+                <div class="radio">
+            <input type="radio" name="opcion" value="3" id="capitulo-opcion3">
+            <img src="" id="capitulo-opcion3-img" width="50" height="50"/>
+          </div></div></label>
+
+          <label><div class="jumbotron bg-info w-75 p-3">
+                <div class="radio">
+            <input type="radio" name="opcion" value="4" id="capitulo-opcion4">
+            <img src="" id="capitulo-opcion4-img" width="50" height="50"/>
+          </div></div></label>
+          </div>
+
+
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default btn-success" data-dismiss="modal" id="verificarRespuesta">Verificar</button>
         </div>
       </div>
       
@@ -52,8 +79,8 @@
 
 {{#each capitulos}}
 <div class="ver_cap" onclick="cargarVideo({{id}})">
-  <img src="https://k30.kn3.net/taringa/B/3/7/4/8/2/MagazineGames/FEF.jpg" alt="" class="img-responsive">
-  <div>Ver capítulo</div>
+  <img src="{{portada}}" alt="" class="img-responsive">
+  <div>{{titulo}}</div>
 </div>
 
 {{/each}}
@@ -69,54 +96,103 @@
 </div>
 
 <script>
+  var url = window.location.origin;
+  var id = localStorage.getItem('id_nino');
+  localStorage.setItem('id_capitulo', {{capitulos.0.id}});
 
+
+  $("#verificarRespuesta").on('click', function(e) {
+
+    e.preventDefault();
+    console.log($("input:checked").val())
+    let opcion = $("input:checked").val();
+
+    if (opcion != undefined) {
+
+      if(parseInt(opcion) == parseInt(localStorage.getItem("respuesta"))){
+        
+        
+        alert("Respuesta correcta")
+        /*$.getJSON( url+"/usuarios/"+id+"/puntos", function( data ) {
+    console.log(data)
+    //Descomentar para sumarle 1 punto cuando conteste correctamente
+  });
+  */
+
+      }else {
+        
+        alert("Respuesta incorrecta")
+      }
+
+    }else{
+      alert("No haz seleccionado una opcion")
+    }
+    $("#capitulo-opcion1").attr('checked', true)
+    $("#capitulo-opcion2").attr('checked', true)
+    $("#capitulo-opcion3").attr('checked', true)
+    $("#capitulo-opcion4").attr('checked', true)
+
+
+    $("#capitulo-opcion1").attr('checked', false)
+    $("#capitulo-opcion2").attr('checked', false)
+    $("#capitulo-opcion3").attr('checked', false)
+    $("#capitulo-opcion4").attr('checked', false)
+
+    console.log(opcion)
+
+  })
   $("#verpregunta").on('click', function(e){
     e.preventDefault();
-    $('#pregunta').modal('show');
-  })
 
-var url = window.location.origin;
+    console.log("click")
+    let id_capitulo = localStorage.getItem('id_capitulo');
+    $.getJSON( url+"/preguntas/consultar/"+id_capitulo, function( data ) {
+      
+      let pregunta = data[0];
+      $("#pregunta-capitulo").text(""+pregunta.pregunta);
+      $("#capitulo-opcion1-img").attr("src", pregunta.pregunta_1_img);
+      $("#capitulo-opcion2-img").attr("src", pregunta.pregunta_2_img);
+      $("#capitulo-opcion3-img").attr("src", pregunta.pregunta_3_img);
+      $("#capitulo-opcion4-img").attr("src", pregunta.pregunta_4_img);
 
-var id = localStorage.getItem('id_nino');
-
-var xhr = new XMLHttpRequest();
-xhr.open('GET', url+"/usuarios/"+id+"/puntos", true);
-xhr.send();
- 
-xhr.onreadystatechange = processRequest;
- 
-function processRequest(e) {
- if (xhr.readyState == 4 && xhr.status == 200) {
-        var response = JSON.parse(xhr.responseText);
-        console.log(response)
-
-        //localStorage.setItem('usuario', JSON.stringify(response))
-        //window.location = "/admin";
-    }
-}
-
-function guardarIDCapitulo(id) {
-  localStorage.setItem('id_capitulo', id)
-}
+      localStorage.setItem("respuesta", pregunta.respuesta)
 
 
-function cargarVideo(id){
-  
-  //http://localhost:3000/capitulos/1/ver
-  console.log(id)
-  let xhr = new XMLHttpRequest();
-  xhr.open('GET', url+"/capitulos/"+id+"/ver", true);
-  xhr.send();
-  xhr.onreadystatechange = function(e) {
+      $('#pregunta').modal('show');
+      console.log(data)
+    });
 
-    if (xhr.readyState == 4 && xhr.status == 200) {
-        var response = JSON.parse(xhr.responseText);
-        console.log(response)
-        guardarIDCapitulo(response.id);
-        $("#video").attr("src", "https://www.youtube.com/embed/"+response.youtube_url)
-    }
-  };
-}
+    
+  });
+
+  $.getJSON( url+"/usuarios/"+id+"/puntos", function( data ) {
+    console.log(data)
+  });
+
+
+  function guardarIDCapitulo(id) {
+    localStorage.setItem('id_capitulo', id)
+  }
+
+
+  function cargarVideo(id){
+    
+    //http://localhost:3000/capitulos/1/ver
+    console.log(id)
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url+"/capitulos/"+id+"/ver", true);
+    xhr.send();
+    xhr.onreadystatechange = function(e) {
+
+      if (xhr.readyState == 4 && xhr.status == 200) {
+          var response = JSON.parse(xhr.responseText);
+          console.log(response)
+          guardarIDCapitulo(response.id);
+
+          $("#video").attr("src", "https://www.youtube.com/embed/"+response.youtube_url)
+      }
+    };
+  }
 
 
 </script>

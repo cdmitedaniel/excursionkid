@@ -17,9 +17,25 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
     </select>
   </div>
   <div>
+    {{url}}
+    
+    <label for="title">Titulo:</label>
+    <input type="text" class="form-control" id="titulo" placeholder="Link del video" name="titulo" value="{{excursion_cap.titulo}}">
+  </div>
+  <div>
     <label for="title">Link de youtube:</label>
     <input type="text" class="form-control" id="youtube_url" placeholder="Link del video" name="youtube_url">
   </div>
+
+  <div class="form-group">
+    <label for="title">Portada:</label>
+    <input type="file" class="form-control" id="foto_perfil_editar">
+  </div>
+  <div class="form-group">
+    <img src="{{excursion_cap.portada}}" id="img_foto_perfil" width="100" height="100">
+    <input type="input" class="form-control" id="img_foto_perfil_" name="portada" value="{{excursion_cap.portada}}">
+  </div>
+
   <button type="submit" class="btn btn-default btn-success">
     Crear
   </button>

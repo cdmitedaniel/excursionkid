@@ -7,7 +7,7 @@ exports.up = function(knex, Promise) {
         table.text('creditos');
         table.text('portada');
         //table.integer('id_usuario').notNullable();
-        table.integer('id_usuario').references('id').inTable('usuarios');
+        table.integer('id_usuario');
       });
 };
 

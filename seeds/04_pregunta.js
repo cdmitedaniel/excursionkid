@@ -15,7 +15,7 @@ exports.seed = function(knex, Promise) {
         respuesta: 1
       }, {
         pregunta: '¿Nuestro amigo Mario cuantos años tiene?',
-        id_capitulo: 1,
+        id_capitulo: 2,
         pregunta_1: '10',
         pregunta_2: '12',
         pregunta_3: '15',
@@ -27,7 +27,7 @@ exports.seed = function(knex, Promise) {
         respuesta: 2
       },{
         pregunta: '¿Que fruta canto mas fuerte?',
-        id_capitulo: 1,
+        id_capitulo: 3,
         pregunta_1: 'Manzana',
         pregunta_2: 'Pera',
         pregunta_3: 'Piña',
@@ -39,7 +39,7 @@ exports.seed = function(knex, Promise) {
         respuesta: 4
       }, {
         pregunta: '¿Quién ayudo a nuestra amiga Pera?',
-        id_capitulo: 1,
+        id_capitulo: 4,
         pregunta_1: 'Fresa',
         pregunta_2: 'Mango',
         pregunta_3: 'Manzana',

@@ -1,0 +1,17 @@
+
+
+<h1>Lista de noticias</h1>
+
+<a href="/noticias/agregar/nuevo"
+ class="btn btn-primary">Agregar</a>
+
+{{#each noticias}}
+    <h2><a href="/noticias/{{id}}"><h2>{{titulo}}</h2></a>
+    <h4>{{fecha}}
+        <span><a href="/noticias/editar/{{id}}" class="btn btn-primary">Editar</a></span>
+
+        <form action="/noticias/{{id}}?_method=DELETE" method="post">
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+    </h4>
+{{/each}}

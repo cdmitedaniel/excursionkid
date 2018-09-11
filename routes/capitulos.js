@@ -4,9 +4,11 @@ const youtubeParse = require('js-video-url-parser');
 const knex = require('../db/knex');
 
 
-var scripts = [{ script: '/js/image.js' }, { script: '/js/asd.js' }];
+var scripts = [{ script: '/js/image.js' }];
 
 /* This router is mounted at /todo */
+
+//localhost:3000/capitulos
 router.get('/', (req, res) => {
   knex('capitulo')
     .select()
@@ -114,6 +116,8 @@ function validateTodoRenderError(req, res, callback) {
     const capitulo = {
       youtube_url: req.body.youtube_url,
       id_excursion: req.body.id_excursion,
+      portada: req.body.portada,
+      titulo: req.body.titulo
     };
 
     console.log(capitulo);
@@ -131,7 +135,7 @@ function respondAndRenderTodo(id, res, viewName) {
   if(validId(id)) {
 
     knex
-    .select('excursion.titulo', 'excursion.descripcion','excursion.portada', 'capitulo.id', 'capitulo.youtube_url', 'capitulo.id_excursion')
+    .select('excursion.titulo', 'excursion.descripcion','excursion.portada', 'capitulo.id', 'capitulo.youtube_url', 'capitulo.id_excursion', 'capitulo.portada', 'capitulo.titulo')
     .from('capitulo')
     .innerJoin('excursion', function() {
       this.on('excursion.id', '=', 'capitulo.id_excursion')
@@ -140,7 +144,11 @@ function respondAndRenderTodo(id, res, viewName) {
     .first()
     .then((excursion_cap)=>{
 
-      excursion_cap.youtube_url = youtubeParse.parse(excursion_cap.youtube_url).id
+      if(viewName != "capitulos/editar"){
+        excursion_cap.youtube_url = youtubeParse.parse(excursion_cap.youtube_url).id
+      }
+
+      console.log(excursion_cap)
 
       res.render(viewName,{excursion_cap: excursion_cap, scripts: scripts} );
 
