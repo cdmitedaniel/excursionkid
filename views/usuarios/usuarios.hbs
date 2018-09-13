@@ -17,24 +17,30 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
     <br>
     <a href="/admin" class="btn btn-danger">Admin</a>
 </div>
-<div class="row">
-  {{#each usuarios}}
-  <div class="col-sm-6 col-md-4">
-    
-    <div class="thumbnail">
-      <img src="{{foto_perfil}}" class="img-perfil">
-      <div class="caption">
-        <h3>{{nombre}}</h3>
-        <p>{{usuario}}</p>
-        <p>
-          <a href="/usuarios/{{id}}/edit" class="btn btn-primary" role="button">Editar</a>
 
-          <a href="/usuarios/{{id}}" class="btn btn-primary" role="button">Ver</a>
-      </div>
-    </div>
-  </div>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Foto de Perfil</th>
+        <th>Nombre</th>
+        <th>Usuario</th>
+    </tr>
+    </thead>
+    <tbody>
+  {{#each usuarios}}
+    <tr>
+        <td><img src="{{foto_perfil}}" class="img-perfil" width="50" height="50"></td>
+        <td>{{nombre}}</td>
+        <td>{{usuario}}</td>
+        <td><a href="/usuarios/{{id}}/edit" class="btn btn-primary" role="button">Editar</a></td>
+        <td><a href="/usuarios/{{id}}" class="btn btn-primary" role="button">Ver</a></td>
+    </tr>
   {{/each}}
-</div>
+    </tbody>
+</table>
+
+
 
 <div class="row">
   <div class="col-xs-12">

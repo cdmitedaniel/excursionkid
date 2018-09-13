@@ -14,25 +14,32 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
 <div class="row justify-content-between bg-light modal-body" id="menu">
     <div><img src="../../images/Logo.png" width="250px"></div>
     <br>
-    <a href="/admin" class="btn btn-danger">Admin</a>
+    <a href="/admin" class="btn btn-danger">Adminnn</a>
 </div>
-<div class="row">
-  {{#each capitulos}}
-  <div class="col-sm-6 col-md-4">
-    
-    <div class="thumbnail">
-      <div class="caption">
-        <h3>{{titulo}}</h3>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/{{youtube_url}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        <p>
-          <a href="/capitulos/{{id}}/edit" class="btn btn-primary" role="button">Editar</a>
 
-          <a href="/capitulos/{{id}}" class="btn btn-primary" role="button">Ver</a>
-      </div>
-    </div>
-  </div>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Titulo</th>
+        <th>Video</th>
+    </tr>
+    </thead>
+    <tbody>
+  {{#each capitulos}}
+    <tr>
+        <td>{{titulo}}</td>
+        <td><iframe width="200" height="150" src="https://www.youtube.com/embed/{{youtube_url}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></td>
+        
+          <td><a href="/capitulos/{{id}}/edit" class="btn btn-primary" role="button">Editar</a></td>
+
+          <td><a href="/capitulos/{{id}}" class="btn btn-primary" role="button">Ver</a></td>
+        
+    </tr>
   {{/each}}
-</div>
+    </tbody>
+</table>
+
 
 <div class="row">
   <div class="col-xs-12">

@@ -4,7 +4,10 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
     console.log("login")
 }</script>
 
-<a href="/usuarios">Ir lista usuarios</a>
+<div class="row justify-content-between bg-light modal-body" id="menu">
+    <div><img src="../../images/Logo.png" width="250px"></div>
+</div>
+<a href="/usuarios" class="btn btn-danger" >Ir lista usuarios</a>
 
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -14,16 +17,16 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
     {{usuario.usuario}}
   </div>
   <div class="panel-footer">
-    <img src="{{usuario.foto_perfil}}" alt="">
+    <img src="{{usuario.foto_perfil}}" alt="" width="200" height="200">
   </div>
 </div>
-<form action="/usuarios/{{usuario.id}}?_method=DELETE" method="post">
 
+<form action="/usuarios/{{usuario.id}}?_method=DELETE" method="post">
   <a href="/usuarios/{{usuario.id}}/edit" type="button" class="btn btn-default btn-warning">
-    Editar
+  Editar
   </a>
   <button type="submit" class="btn btn-default btn-danger">
-    Eliminar
+  Eliminar
   </button>
 </form>
 

@@ -6,7 +6,9 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
 <div class="row justify-content-between bg-light modal-body" id="menu">
     <div><img src="../../images/Logo.png" width="250px"></div>
 </div>
-<a href="/preguntas">Ir lista preguntas</a>
+
+<a href="/preguntas" class="btn btn-danger">Ir lista preguntas</a>
+
 <form class="form" action="/preguntas" method="post" encType="multipart/form-data">
   <div class="form-group">
     <label for="title">Pregunta:</label>

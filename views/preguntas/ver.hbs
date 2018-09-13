@@ -3,10 +3,11 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
     window.location = "/login";
     console.log("login")
 }</script>
+
 <div class="row justify-content-between bg-light modal-body" id="menu">
     <div><img src="../../images/Logo.png" width="250px"></div>
 </div>
-<a href="/preguntas">Ir lista preguntas</a>
+<a href="/preguntas" class="btn btn-danger">Ir lista preguntas</a>
 
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -35,17 +36,18 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
       <img src="{{pregunta.pregunta_4_img}}" width="50" height="50">
     </li>
 </ul>
+ 
   </div>
   <div class="panel-footer">
-    <img src="{{pregunta.foto_perfil}}" alt="">
+    <img src="{{pregunta.foto_perfil}}" alt="" width="50" height="50">
   </div>
 </div>
-<form action="/preguntas/{{pregunta.id}}?_method=DELETE" method="post">
 
+<form action="/preguntas/{{pregunta.id}}?_method=DELETE" method="post">
   <a href="/preguntas/{{pregunta.id}}/edit" type="button" class="btn btn-default btn-warning">
-    Editar
+  Editar
   </a>
   <button type="submit" class="btn btn-default btn-danger">
-    Eliminar
+  Eliminar
   </button>
 </form>

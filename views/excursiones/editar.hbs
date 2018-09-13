@@ -3,10 +3,12 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
     window.location = "/login";
     console.log("login")
 }</script>
+
 <div class="row justify-content-between bg-light modal-body" id="menu">
     <div><img src="../../images/Logo.png" width="250px"></div>
 </div>
-<a href="/excursiones">Ir lista excursiones</a>
+<a href="/excursiones" class="btn btn-danger">Ir lista excursiones</a>
+
 <form class="form" action="/excursiones/{{excursion.id}}?_method=PUT" method="post">
   <div class="form-group">
     <label for="title">Titulo:</label>

@@ -3,12 +3,13 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
     window.location = "/login";
     console.log("login")
 }</script>
+
 <div class="row justify-content-between bg-light modal-body" id="menu">
     <div><img src="../../images/Logo.png" width="250px"></div>
 </div>
-<a href="/capitulos">Ir lista capitulos</a>
-<form class="form" action="/capitulos/{{excursion_cap.id}}?_method=PUT" method="post">
+<a href="/capitulos" class="btn btn-danger">Ir lista capitulos</a>
 
+<form class="form" action="/capitulos/{{excursion_cap.id}}?_method=PUT" method="post">
   <div>
     <label for="title">Titulo:</label>
     <input type="text" class="form-control" id="titulo" placeholder="Link del video" name="titulo" value="{{excursion_cap.titulo}}">

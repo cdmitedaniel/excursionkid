@@ -11,21 +11,23 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
 </div>
 
 
-<div class="row">
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Pregunta</th>
+    </tr>
+    </thead>
+    <tbody>
   {{#each preguntas}}
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <div class="caption">
-        <h3>{{pregunta}}</h3>
-        <p>
-          <a href="/preguntas/{{id}}/edit" class="btn btn-primary" role="button">Editar</a>
-
-          <a href="/preguntas/{{id}}" class="btn btn-primary" role="button">Ver</a>
-      </div>
-    </div>
-  </div>
+       <tr>
+        <td>{{pregunta}}</td>
+        <td><a href="/preguntas/{{id}}/edit" class="btn btn-primary" role="button">Editar</a></td>
+        <td><a href="/preguntas/{{id}}" class="btn btn-primary" role="button">Ver</a></td>
+        </tr>
   {{/each}}
-</div>
+    </tbody>
+</table>
+
 
 <div class="row">
   <div class="col-xs-12">

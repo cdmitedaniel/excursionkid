@@ -16,25 +16,31 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
     <br>
     <a href="/admin" class="btn btn-danger">Admin</a>
 </div>
-<div class="row">
-  {{#each excursiones}}
-  <div class="col-sm-6 col-md-4">
-    
-    <div class="thumbnail">
-      <img src="{{portada}}" class="img-perfil">
-      <div class="caption">
-        <h3>{{titulo}}</h3>
-        <p>{{descripcion}}</p>
-        <p><b>Creditos:</b> {{creditos}}</p>
-        <p>
-          <a href="/excursiones/{{id}}/edit" class="btn btn-primary" role="button">Editar</a>
 
-          <a href="/excursiones/{{id}}" class="btn btn-primary" role="button">Ver</a>
-      </div>
-    </div>
-  </div>
-  {{/each}}
-</div>
+
+<table class="table table-bordered ">
+    <thead>
+    <tr>
+        <th>Portada</th>
+        <th>Titulo</th>
+        <th>Descripcion</th>
+        <th>Creditos</th>
+    </tr>
+    </thead>
+    <tbody>
+{{#each excursiones}}
+    <tr>
+        <td><img src="{{portada}}" class="img-perfil" width="150" height="150"></td>
+        <td>{{titulo}}</td>
+        <td>{{descripcion}}</td>
+        <td>{{creditos}}</td>
+        <td><a href="/excursiones/{{id}}/edit" class="btn btn-primary" role="button">Editar</a></td>
+        <td><a href="/excursiones/{{id}}" class="btn btn-primary" role="button">Ver</a></td>
+    </tr>
+{{/each}}
+    </tbody>
+</table>
+
 
 <div class="row">
   <div class="col-xs-12">
