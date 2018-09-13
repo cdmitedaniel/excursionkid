@@ -1,6 +1,35 @@
 <!-- Modal -->
 <link rel="stylesheet" href="/css/admin.css">
-  <div class="modal fade" id="pregunta" role="dialog">
+<audio id="audio_pregunta" preload="auto">
+  <source id="mp3_src" src="" />
+</audio>
+
+
+<div class="modal fade" id="respuesta" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+
+          <img src="" id="img-resultado" width="200" height="200"/>
+
+      </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="pregunta" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -13,40 +42,39 @@
 
         <div>
           <label><div class="jumbotron bg-info w-150 p-3">
-                <div class="radio">
-            <input type="radio" name="opcion" value="1" id="capitulo-opcion1">
-            <img src="" id="capitulo-opcion1-img" width="150" height="150"/>
-          </div>
+              <div class="radio">
+          <input type="radio" name="opcion" value="1" id="capitulo-opcion1">
+          <img src="" id="capitulo-opcion1-img" width="50" height="50"/>
+        </div></div></label>
+
+        <label><div class="jumbotron bg-info w-75 p-3">
+              <div class="radio">
+          <input type="radio" name="opcion" value="2" id="capitulo-opcion2">
+          <img src="" id="capitulo-opcion2-img" width="50" height="50"/>
+        </div></div></label>
+
+        <label><div class="jumbotron bg-info w-75 p-3">
+              <div class="radio">
+          <input type="radio" name="opcion" value="3" id="capitulo-opcion3">
+          <img src="" id="capitulo-opcion3-img" width="50" height="50"/>
+        </div></div></label>
+
+        <label><div class="jumbotron bg-info w-75 p-3">
+              <div class="radio">
+          <input type="radio" name="opcion" value="4" id="capitulo-opcion4">
+          <img src="" id="capitulo-opcion4-img" width="50" height="50"/>
+        </div></div></label>
         </div>
-      </label>
 
-          <label><div class="jumbotron bg-info w-75 p-3">
-                <div class="radio">
-            <input type="radio" name="opcion" value="2" id="capitulo-opcion2">
-            <img src="" id="capitulo-opcion2-img" width="150" height="150"/>
-          </div></div></label>
 
-          <label><div class="jumbotron bg-info w-75 p-3">
-                <div class="radio">
-            <input type="radio" name="opcion" value="3" id="capitulo-opcion3">
-            <img src="" id="capitulo-opcion3-img" width="150" height="150"/>
-          </div></div></label>
-
-          <label><div class="jumbotron bg-info w-75 p-3">
-                <div class="radio">
-            <input type="radio" name="opcion" value="4" id="capitulo-opcion4">
-            <img src="" id="capitulo-opcion4-img" width="150" height="150"/>
-          </div></div></label>
-        </div>
       </div>
-
       <div class="modal-footer">
         <button type="button" class="btn btn-default btn-success" data-dismiss="modal" id="verificarRespuesta">Verificar</button>
       </div>
     </div>
+
   </div>
 </div>
-
 
 
 <div class="row justify-content-between bg-light modal-body" id="menu">
