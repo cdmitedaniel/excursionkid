@@ -25,6 +25,7 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
         <th>Foto de Perfil</th>
         <th>Nombre</th>
         <th>Usuario</th>
+        <th>Rol</th>
     </tr>
     </thead>
     <tbody>
@@ -33,6 +34,7 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
         <td><img src="{{foto_perfil}}" class="img-perfil" width="50" height="50"></td>
         <td>{{nombre}}</td>
         <td>{{usuario}}</td>
+        <td>{{rol}}</td>
         <td><a href="/usuarios/{{id}}/edit" class="btn btn-primary" role="button">Editar</a></td>
         <td><a href="/usuarios/{{id}}" class="btn btn-primary" role="button">Ver</a></td>
     </tr>

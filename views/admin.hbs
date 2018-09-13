@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="css/admin.css">
+
 
 <script src="./js/validar.js"></script>
 
@@ -10,16 +10,19 @@
     </div>
         
     <div class="text-left rem">
-        <h1>Bienvenido</h1>
+        <h1>Bienvenido a la sección del administrador</h1>
     </div>
 </div>
 
-<ul>
-    <li><a href="/usuarios">Usuarios</a></li>
-    <li><a href="/excursiones">Excursiones</a></li>
-    <li><a href="/capitulos">Capitulos</a></li>
-    <li><a href="/preguntas">Preguntas</a></li>
-</ul>
+<div class="jumbotron">
+    <a href="/usuarios" class="btn btn-primary btn-block">Usuarios</a>
+    <br>
+    <a href="/excursiones" class="btn btn-primary btn-block">Excursiones</a>
+    <br>
+    <a href="/capitulos" class="btn btn-primary btn-block">Capitulos</a>
+    <br>
+    <a href="/preguntas" class="btn btn-primary btn-block">Preguntas</a>
+</div>
 
 <script>
     $("#salir").on('click', function(e) {
