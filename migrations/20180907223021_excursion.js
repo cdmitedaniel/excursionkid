@@ -6,8 +6,6 @@ exports.up = function(knex, Promise) {
         table.text('descripcion');
         table.text('creditos');
         table.text('portada');
-        //table.integer('id_usuario').notNullable();
-        table.integer('id_usuario');
       });
 };
 

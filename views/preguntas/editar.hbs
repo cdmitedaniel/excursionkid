@@ -13,36 +13,6 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
     <input type="text" class="form-control" id="nombre" placeholder="Pregunta" name="pregunta" value="{{pregunta.pregunta}}">
   </div>
 
-  <!--<div class="form-group">
-    <label for="priority">Capitulo:</label>
-    <select class="form-control" id="rol" name="id_capitulo">
-    {{#each capitulos}}
-    <option value="{{id}}">{{id}}</option>
-    {{/each}}
-    </select>
-  </div>-->
-
-  <div class="form-group">
-    <label for="title">Opcion 1:</label>
-    <input type="text" class="form-control" id="usuario" placeholder="Respuesta 1" name="pregunta_1" value="{{pregunta.pregunta_1}}">
-  </div>
-
-
-  <div class="form-group">
-    <label for="title">Opcion 2:</label>
-    <input type="text" class="form-control" id="usuario" placeholder="Respuesta 1" name="pregunta_2" value="{{pregunta.pregunta_2}}">
-  </div>
-
-  <div class="form-group">
-    <label for="title">Opcion 3:</label>
-    <input type="text" class="form-control" id="usuario" placeholder="Respuesta 1" name="pregunta_3" value="{{pregunta.pregunta_3}}">
-  </div>
-
-  <div class="form-group">
-    <label for="title">Opcion 4:</label>
-    <input type="text" class="form-control" id="usuario" placeholder="Respuesta 1" name="pregunta_4" value="{{pregunta.pregunta_4}}">
-  </div>
-
   <div class="form-group">
     <label for="respuesta">Respuesta</label>
     <select class="form-control" id="respuesta" name="respuesta">
@@ -59,28 +29,33 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
     <label for="imagen_opcion_1">Imagen opcion1:</label>
     <img src="{{pregunta.pregunta_1_img}}" alt="" id="pregunta_1_img" width="100" height="100">
     <input type="file" class="form-control" id="file_pregunta_1_img" name="pregunta_1_img">
-    <input class="form-control" type="text" id="pregunta_1_img_" name="pregunta_1_img_" value="{{pregunta.pregunta_1_img}}">
+    <input class="form-control hidden" type="text" id="pregunta_1_img_" name="pregunta_1_img_" value="{{pregunta.pregunta_1_img}}">
   </div>
 
   <div class="form-group">
     <label for="imagen_opcion_2">Imagen opcion2:</label>
     <img src="{{pregunta.pregunta_2_img}}" alt="" id="pregunta_2_img" width="100" height="100">
     <input type="file" class="form-control" id="file_pregunta_2_img" name="pregunta_2_img">
-    <input class="form-control" type="text" id="pregunta_2_img_" name="pregunta_2_img_" value="{{pregunta.pregunta_2_img}}">
+    <input class="form-control hidden" type="text" id="pregunta_2_img_" name="pregunta_2_img_" value="{{pregunta.pregunta_2_img}}">
   </div>
 
   <div class="form-group">
     <label for="imagen_opcion_3">Imagen opcion3:</label>
     <img src="{{pregunta.pregunta_3_img}}" alt="" id="pregunta_3_img" width="100" height="100">
     <input type="file" class="form-control" id="file_pregunta_3_img" name="pregunta_3_img">
-    <input class="form-control" type="text" id="pregunta_3_img_" name="pregunta_3_img_" value="{{pregunta.pregunta_3_img}}">
+    <input class="form-control hidden" type="text" id="pregunta_3_img_" name="pregunta_3_img_" value="{{pregunta.pregunta_3_img}}">
   </div>
 
   <div class="form-group">
     <label for="imagen_opcion_4">Imagen opcion4:</label>
     <img src="{{pregunta.pregunta_4_img}}" alt="" id="pregunta_4_img" width="100" height="100">
     <input type="file" class="form-control" id="file_pregunta_4_img" name="pregunta_4_img">
-    <input class="form-control" type="text" id="pregunta_4_img_" name="pregunta_4_img_" value="{{pregunta.pregunta_4_img}}">
+    <input class="form-control hidden" type="text" id="pregunta_4_img_" name="pregunta_4_img_" value="{{pregunta.pregunta_4_img}}">
+  </div>
+
+  <div class="form-group">
+    <label for="imagen_opcion_4">Audio Pregunta:</label>
+    <input type="file" class="form-control" id="audio_pregunta" name="audio_pregunta">
   </div>
 
   <button type="submit" class="btn btn-default btn-success">

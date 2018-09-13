@@ -5,7 +5,6 @@ exports.up = function(knex, Promise) {
         table.text('youtube_url').notNullable();
         table.text('portada');
         table.text('titulo');
-        //table.integer('id_excursion').notNullable();
         table.integer('id_excursion');
       });
 };

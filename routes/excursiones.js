@@ -5,7 +5,7 @@ const knex = require('../db/knex');
 
 var scripts = [{ script: '/js/image.js' }];
 
-/* This router is mounted at /todo */
+//localhost:3000/excursiones
 router.get('/', (req, res) => {
   knex('excursion')
     .select()
@@ -14,6 +14,7 @@ router.get('/', (req, res) => {
     });
 });
 
+//localhost:3000/excursiones/agregar
 router.get('/agregar', (req, res) => {
 
   knex('usuarios')
@@ -24,6 +25,7 @@ router.get('/agregar', (req, res) => {
     });
 });
 
+//localhost:3000/excursiones/1
 router.get('/:id', (req, res) => {
 
   const id = req.params.id;
@@ -31,6 +33,7 @@ router.get('/:id', (req, res) => {
   respondAndRenderTodo(id, res, 'excursiones/ver');
 });
 
+//localhost:3000/excursiones/1/edit
 router.get('/:id/edit', (req, res) => {
   const id = req.params.id;
   respondAndRenderTodo(id, res, 'excursiones/editar');
@@ -79,32 +82,21 @@ router.delete('/:id', (req, res) => {
 });
 
 function validateTodoRenderError(req, res, callback) {
-  //if(validTodo(req.body)) {
-    
+
     const excursion = {
       titulo: req.body.titulo,
       descripcion: req.body.descripcion,
       creditos: req.body.creditos,
-      id_usuario: req.body.id_usuario,
       portada: req.body.portada
     };
-
     console.log(excursion);
-
     callback(excursion);
-  /*} else {
-    res.status( 500);
-    res.render('error', {
-      message:  'Invalid todo'
-    });
-  }*/
 }
 
 function respondAndRenderTodo(id, res, viewName) {
   if(validId(id)) {
     knex('usuarios')
     .select()
-    //.where('rol', 'N')
     .then(usuarios => {
       knex('excursion')
       .select()

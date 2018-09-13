@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const knex = require('../db/knex');
+const path  = require('path')
 var scripts = [{ script: '/js/pregunta_imagen.js' }];
 
 router.get('/', (req, res) => {
@@ -90,19 +91,36 @@ router.delete('/:id', (req, res) => {
 
 function validateTodoRenderError(req, res, callback) {
 
-    const pregunta = {
-      id_capitulo: req.body.id_capitulo,
-      pregunta: req.body.pregunta,
-      pregunta_1: req.body.pregunta_1,
-      pregunta_2: req.body.pregunta_2,
-      pregunta_3: req.body.pregunta_3,
-      pregunta_4: req.body.pregunta_4,
-      respuesta: req.body.respuesta,
-      pregunta_1_img : req.body.pregunta_1_img_,
-      pregunta_2_img : req.body.pregunta_2_img_,
-      pregunta_3_img : req.body.pregunta_3_img_,
-      pregunta_4_img : req.body.pregunta_4_img_,
-    };
+
+  let pregunta = {
+    id_capitulo: req.body.id_capitulo,
+    pregunta: req.body.pregunta,
+    respuesta: req.body.respuesta,
+    pregunta_1_img : req.body.pregunta_1_img_,
+    pregunta_2_img : req.body.pregunta_2_img_,
+    pregunta_3_img : req.body.pregunta_3_img_,
+    pregunta_4_img : req.body.pregunta_4_img_,
+  };
+
+  let pregunta_audio = req.files.pregunta_audio;
+  if(pregunta_audio!=undefined){
+    console.log(pregunta_audio)
+
+    pregunta_audio.mv(path.join(__dirname, '../public')+'/audios/'+pregunta_audio.name, function(err) {
+      if (err)
+        return res.status(500).send(err);
+  
+      
+      pregunta.pregunta_audio = "/audios/"+pregunta_audio.name;
+
+      callback(pregunta)
+      //res.send('File uploaded!');
+    });
+  }else{
+    pregunta["pregunta_audio"] = "/audios/pregunta.mp3"
+    console.log("No hay audio")
+  }
+    
     console.log(pregunta);
     callback(pregunta);
 }

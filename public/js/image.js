@@ -31,3 +31,4 @@ if($('#foto_perfil_editar').length) {
         readURL(this, "img_foto_perfil", true);
     });
 }
+

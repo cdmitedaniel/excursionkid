@@ -3,35 +3,20 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
     window.location = "/login";
     console.log("login")
 }</script>
-<!--<ul class="list-group">
-  {{#each usuarios}}
-    <a href="/usuarios/{{id}}" class="list-group-item">{{nombre}}</a>
-  {{/each}}
-</ul>
-<a type="button" class="btn btn-default btn-primary" href="/usuarios/agregar">
-  Nuevo Usuario
-</a>-->
+
 <div class="row justify-content-between bg-light modal-body" id="menu">
     <div><img src="../../images/Logo.png" width="250px"></div>
     <br>
     <a href="/admin" class="btn btn-danger">Admin</a>
 </div>
+
+
 <div class="row">
   {{#each preguntas}}
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <div class="caption">
         <h3>{{pregunta}}</h3>
-        <label for="respuesta">Respuesta:</label>
-        <select class="form-control" id="pregunta" name="pregunta" disabled>
-        {{#select respuesta}}
-        <option value="1">{{pregunta_1}}</option>
-        <option value="2">{{pregunta_2}}</option>
-        <option value="3">{{pregunta_3}}</option>
-        <option value="4">{{pregunta_4}}</option>
-        {{/select}}
-        </select>
-
         <p>
           <a href="/preguntas/{{id}}/edit" class="btn btn-primary" role="button">Editar</a>
 

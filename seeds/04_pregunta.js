@@ -4,51 +4,21 @@ exports.seed = function(knex, Promise) {
       const pregunta = [{
         pregunta: '¿Cuántos amigos verdes aparecieron?',
         id_capitulo: 1,
-        pregunta_1: '10',
-        pregunta_2: '1',
-        pregunta_3: '5',
-        pregunta_4: '3',
-        pregunta_1_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        pregunta_2_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        pregunta_3_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        pregunta_4_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        respuesta: 1
+        pregunta_1_img: '/images/ovejaNegra.png',
+        pregunta_2_img: '/images/ovejaAzul.png',
+        pregunta_3_img: '/images/ovejaAmarilla.png',
+        pregunta_4_img: '/images/ovejaRoja.png',
+        respuesta: 1,
+        pregunta_audio : '/audios/cuantos_animales_viste.mp3'
       }, {
-        pregunta: '¿Nuestro amigo Mario cuantos años tiene?',
+        pregunta: '¿Cuanto es 2 + 2?',
         id_capitulo: 2,
-        pregunta_1: '10',
-        pregunta_2: '12',
-        pregunta_3: '15',
-        pregunta_4: '13',
-        pregunta_1_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        pregunta_2_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        pregunta_3_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        pregunta_4_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        respuesta: 2
-      },{
-        pregunta: '¿Que fruta canto mas fuerte?',
-        id_capitulo: 3,
-        pregunta_1: 'Manzana',
-        pregunta_2: 'Pera',
-        pregunta_3: 'Piña',
-        pregunta_4: 'Sandia',
-        pregunta_1_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        pregunta_2_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        pregunta_3_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        pregunta_4_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        respuesta: 4
-      }, {
-        pregunta: '¿Quién ayudo a nuestra amiga Pera?',
-        id_capitulo: 4,
-        pregunta_1: 'Fresa',
-        pregunta_2: 'Mango',
-        pregunta_3: 'Manzana',
-        pregunta_4: 'Kiwi',
-        pregunta_1_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        pregunta_2_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        pregunta_3_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        pregunta_4_img: 'https://c3352096.ssl.cf0.rackcdn.com/rana_cocinera.jpg',
-        respuesta: 1
+        pregunta_1_img: '/images/cinco.png',
+        pregunta_2_img: '/images/cuatro.png',
+        pregunta_3_img: '/images/uno.png',
+        pregunta_4_img: '/images/dos.png',
+        respuesta: 2,
+        pregunta_audio : '/audios/uno_mas_uno.mp3'
       }];
       return knex('pregunta').insert(pregunta);
     });

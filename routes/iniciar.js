@@ -7,13 +7,12 @@ const youtubeParse = require('js-video-url-parser');
 
 //localhost:3000/iniciar
 router.get('/', function(req, res, next) {
-
-        knex('usuarios')
-        .where('rol', 'N')
-        .then(usuarios => {
-            console.log(usuarios)
-            res.render('iniciar/iniciar', { usuarios: usuarios });
-          });
+    //Pantalla para mostrar todos los usuario con rol 'N' (niño)
+    knex('usuarios')
+    .where('rol', 'N')
+    .then(usuarios => {
+        res.render('iniciar/iniciar', { usuarios: usuarios });
+    });
 });
 
 router.get('/:id', function(req, res, next) {
@@ -21,7 +20,7 @@ router.get('/:id', function(req, res, next) {
     const id = req.params.id;
 
     knex('excursion')
-    .where('id_usuario', id)
+    .select()
     .then(excursiones => {
         console.log(excursiones)
         res.render('iniciar/excursiones', { excursiones: excursiones });
@@ -68,29 +67,8 @@ router.get('/:id_excursion/jugar', function(req, res, next) {
                 res.render('iniciar/iniciar');
                 //console.log("no cap")
             }
-        //res.render('iniciar/excursiones', { excursiones: excursiones });
       });
     });
-
-    /*console.log(id);
-
-    knex('capitulo')
-    .where('id_excursion', id)
-    .then(capitulos => {
-        
-        if(capitulos.length > 0){
-
-            res.render('iniciar/capitulos', { capitulos: capitulos });
-            //console.log(capitulos)
-        }else{
-            console.log("no cap")
-        }
-        //res.render('iniciar/excursiones', { excursiones: excursiones });
-      });
-
-    console.log(id);*/
-
-  //res.render('admin');
 });
 
 module.exports = router;

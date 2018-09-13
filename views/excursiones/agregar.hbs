@@ -21,18 +21,10 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
     <input type="text" class="form-control" id="clave" placeholder="Creditos" name="creditos">
   </div>
   <div class="form-group">
-    <label for="priority">Usuario:</label>
-    <select class="form-control" id="rol" name="id_usuario">
-    {{#each usuarios}}
-    <option value="{{id}}">{{nombre}}</option>
-    {{/each}}
-    </select>
-  </div>
-  <div class="form-group">
     <label for="title">Portada:</label>
     <input type="file" class="form-control" id="foto_perfil_editar">
   </div>
-  <div class="form-group">
+  <div class="form-group hidden">
     <input type="input" class="form-control" id="img_foto_perfil_" name="portada">
   </div>
   <div class="form-group">

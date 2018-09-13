@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 const helmet = require('helmet')
 const frameguard = require('frameguard')
+const fileUpload = require('express-fileupload');
+
 
 var routes = require('./routes/index');
 var usuarios = require('./routes/usuarios');
@@ -19,8 +21,11 @@ var tareas = require('./routes/tareas');
 var noticias = require('./routes/noticias');
 
 var login = require('./routes/login');
+
+
 var app = express();
 
+app.use(fileUpload());
 app.use(helmet())
 app.use(frameguard({
   action: 'allow-from',
