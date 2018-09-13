@@ -90,54 +90,75 @@
 </div>
 
 <script>
-  var url = window.location.origin;
-  var id = localStorage.getItem('id_nino');
-  localStorage.setItem('id_capitulo', {{capitulos.0.id}});
-
-
-  $("#verificarRespuesta").on('click', function(e) {
-
-    e.preventDefault();
-    console.log($("input:checked").val())
-    let opcion = $("input:checked").val();
-
-    if (opcion != undefined) {
-
-      if(parseInt(opcion) == parseInt(localStorage.getItem("respuesta"))){
-
-
-        alert("Respuesta correcta")
-        /*$.getJSON( url+"/usuarios/"+id+"/puntos", function( data ) {
-    console.log(data)
-    //Descomentar para sumarle 1 punto cuando conteste correctamente
-  });
-  */
-      }else {
-        alert("Respuesta incorrecta")
-      }
-
-    }else{
-      alert("No haz seleccionado una opcion")
-    }
+  function limpiarRadioInput() {
     $("#capitulo-opcion1").attr('checked', true)
     $("#capitulo-opcion2").attr('checked', true)
     $("#capitulo-opcion3").attr('checked', true)
     $("#capitulo-opcion4").attr('checked', true)
-
-
     $("#capitulo-opcion1").attr('checked', false)
     $("#capitulo-opcion2").attr('checked', false)
     $("#capitulo-opcion3").attr('checked', false)
     $("#capitulo-opcion4").attr('checked', false)
+  }
 
+  var x;
+  var url = window.location.origin;
+  var id = localStorage.getItem('id_nino');
+  localStorage.setItem('id_capitulo', {{capitulos.0.id}});
+  $("#verificarRespuesta").on('click', function(e) {
+    e.preventDefault();
+    console.log($("input:checked").val())
+    let opcion = $("input:checked").val();
+    if (opcion != undefined) {
+      if(parseInt(opcion) == parseInt(localStorage.getItem("respuesta"))){
+
+        //alert("Respuesta correcta");
+        $("#mp3_src").attr("src", "/audios/acierto.mp3");
+        var audio = $("#audio_pregunta")[0];
+        audio.load();
+        audio.play();
+        limpiarRadioInput();
+      }else {
+        let respuesta = parseInt(localStorage.getItem("respuesta")); //leer la respuesta del localStorage
+        let img_repuesta = "";
+        if(respuesta ==1) {
+          //Si es la 1era opcion cargo la imagen del elemento #capitulo-opcion1-img con: $("#capitulo-opcion1-img")
+          img_repuesta = $("#capitulo-opcion1-img").attr("src")
+          //alert("Respuesta incorrecta. La respuesta era: ")
+        }
+        if(respuesta ==2) {
+          img_repuesta = $("#capitulo-opcion2-img").attr("src")
+          //alert("Respuesta incorrecta. La respuesta era: ")
+        }
+        if(respuesta ==3) {
+          img_repuesta = $("#capitulo-opcion3-img").attr("src")
+          //alert("Respuesta incorrecta. La respuesta era: ")
+        }
+        if(respuesta ==4) {
+          img_repuesta = $("#capitulo-opcion4-img").attr("src")
+          //alert("Respuesta incorrecta. La respuesta era: ")
+        }
+        $("#respuesta").modal('show');
+        $("#img-resultado").attr("src", img_repuesta);
+        $("#mp3_src").attr("src", "/audios/incorrecto.mp3");
+        var audio = $("#audio_pregunta")[0];
+        audio.load();
+        audio.play();
+        limpiarRadioInput();
+        //console.log(img_repuesta);
+
+      }
+    }else{
+      alert("No haz seleccionado una opcion")
+    }
+    limpiarRadioInput();
     console.log(opcion)
-
   })
+
   $("#verpregunta").on('click', function(e){
     e.preventDefault();
-
-    console.log("click")
     let id_capitulo = localStorage.getItem('id_capitulo');
+    //Consultar la pregunta del capitulo
     $.getJSON( url+"/preguntas/consultar/"+id_capitulo, function( data ) {
 
       let pregunta = data[0];
@@ -146,37 +167,37 @@
       $("#capitulo-opcion2-img").attr("src", pregunta.pregunta_2_img);
       $("#capitulo-opcion3-img").attr("src", pregunta.pregunta_3_img);
       $("#capitulo-opcion4-img").attr("src", pregunta.pregunta_4_img);
-
       localStorage.setItem("respuesta", pregunta.respuesta)
 
+      $("#mp3_src").attr("src", pregunta.pregunta_audio);
+      var audio = $("#audio_pregunta")[0];
+      audio.load();
+      audio.play();
       $('#pregunta').modal('show');
       console.log(data)
     });
 
   });
-// funcion que hace que se sume un punto a excursion
   $.getJSON( url+"/usuarios/"+id+"/puntos", function( data ) {
-    console.log(data)
+    console.log("-->"+data)
   });
-
   function guardarIDCapitulo(id) {
     localStorage.setItem('id_capitulo', id)
-}
-
+  }
   function cargarVideo(id){
-//http://localhost:3000/capitulos/1/ver
-console.log(id)
-let xhr = new XMLHttpRequest();
-xhr.open('GET', url+"/capitulos/"+id+"/ver", true);
-xhr.send();
-xhr.onreadystatechange = function(e) {
 
-if (xhr.readyState == 4 && xhr.status == 200) {
-var response = JSON.parse(xhr.responseText);
-console.log(response)
-guardarIDCapitulo(response.id);
-$("#video").attr("src", "https://www.youtube.com/embed/"+response.youtube_url)
-    }
-  };
-}
+    //http://localhost:3000/capitulos/1/ver
+    console.log(id)
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url+"/capitulos/"+id+"/ver", true);
+    xhr.send();
+    xhr.onreadystatechange = function(e) {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+          var response = JSON.parse(xhr.responseText);
+          console.log(response)
+          guardarIDCapitulo(response.id);
+          $("#video").attr("src", "https://www.youtube.com/embed/"+response.youtube_url)
+      }
+    };
+  }
 </script>
