@@ -1,27 +1,32 @@
+<link rel="stylesheet" href="/css/admin.css">
 <div class="row justify-content-between bg-light modal-body" id="menu">
 
-    <div><img src="../images/Logo.png" width="250px"></div>
+    <div><a href="../iniciar"> <img src="../../images/Logo.png" width="250px"></a></div>
     <div class=" text-right rem">
-        <a href="/iniciar" class="btn btn-success"><span class="fa fa-home"></span>Home</a>
-       <a href="/" id="salir" class="btn btn-danger"><span class="fa fa-sign-out"></span>Salir</a>
+        <a href="/iniciar" class="btn btn-success"><span class="fa fa-home "style="font-size: 36px" ></span></a>
+       <a href="/" id="salir" class="btn btn-danger"><span class="fa fa-sign-out" style="font-size: 36px" ></span></a>
     </div>
-        
-    <div class="text-left rem">
+
+    <div class="text-center bg-info">
         <h1 class="title">Excursiones</h1>
     </div>
 </div>
 
-<div class="row" id="excursiones">
+    <div class="row " id="excursiones">
     {{#each excursiones}}
   <div class="col-xs-6 col-md-3">
     <a href="/iniciar/{{id}}/jugar" class="thumbnail">
       <img src="{{portada}}" class="img-perfil">
     </a>
-    <p>{{titulo}}</p>
-    <p>{{descripcion}}</p>
+    <div class="bg-info">
+      <h4 class="text-center">{{titulo}}</h4>
+      <p class="text-center">{{descripcion}}</p>
+    </div>
+
   </div>
+
   {{/each}}
-</div>
+  </div>
 
 
 <script>
