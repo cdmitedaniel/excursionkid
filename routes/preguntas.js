@@ -32,13 +32,13 @@ router.get('/consultar/:id', (req, res)=> {
 
   let id = req.params.id;
   console.log("--->"+id)
-  
+
   knex('pregunta')
   .where('id_capitulo', id)
   .then((data)=>{
     res.json(data);
   })
-  
+
 
 })
 
@@ -49,7 +49,7 @@ router.get('/:id/edit', (req, res) => {
 
 router.post('/', (req, res) => {
   validateTodoRenderError(req, res, (pregunta) => {
-    
+
     console.log(pregunta)
     knex('pregunta')
       .insert(pregunta, 'id')
@@ -91,7 +91,6 @@ router.delete('/:id', (req, res) => {
 
 function validateTodoRenderError(req, res, callback) {
 
-
   let pregunta = {
     id_capitulo: req.body.id_capitulo,
     pregunta: req.body.pregunta,
@@ -101,29 +100,54 @@ function validateTodoRenderError(req, res, callback) {
     pregunta_3_img : req.body.pregunta_3_img_,
     pregunta_4_img : req.body.pregunta_4_img_,
   };
+  if(req.files){
 
-  let pregunta_audio = req.files.pregunta_audio;
-  if(pregunta_audio!=undefined){
-    console.log(pregunta_audio)
+    if(req.files.pregunta_audio){
 
-    pregunta_audio.mv(path.join(__dirname, '../public')+'/audios/'+pregunta_audio.name, function(err) {
-      if (err)
-        return res.status(500).send(err);
-  
-      
+      let pregunta_audio = req.files.pregunta_audio;
       pregunta.pregunta_audio = "/audios/"+pregunta_audio.name;
-
-      callback(pregunta)
-      //res.send('File uploaded!');
-    });
-  }else{
-    pregunta["pregunta_audio"] = "/audios/pregunta.mp3"
-    console.log("No hay audio")
+      pregunta_audio.mv(path.join(__dirname, '../public')+'/audios/'+pregunta_audio.name);
+    }
   }
-    
-    console.log(pregunta);
-    callback(pregunta);
+  callback(pregunta);
 }
+
+
+// function validateTodoRenderError(req, res, callback) {
+//
+//
+//   let pregunta = {
+//     id_capitulo: req.body.id_capitulo,
+//     pregunta: req.body.pregunta,
+//     respuesta: req.body.respuesta,
+//     pregunta_1_img : req.body.pregunta_1_img_,
+//     pregunta_2_img : req.body.pregunta_2_img_,
+//     pregunta_3_img : req.body.pregunta_3_img_,
+//     pregunta_4_img : req.body.pregunta_4_img_,
+//   };
+//
+//   let pregunta_audio = req.files.pregunta_audio;
+//   if(pregunta_audio!=undefined){
+//     console.log(pregunta_audio)
+//
+//     pregunta_audio.mv(path.join(__dirname, '../public')+'/audios/'+pregunta_audio.name, function(err) {
+//       if (err)
+//         return res.status(500).send(err);
+//
+//
+//       pregunta.pregunta_audio = "/audios/"+pregunta_audio.name;
+//
+//       callback(pregunta)
+//       //res.send('File uploaded!');
+//     });
+//   }else{
+//     pregunta["pregunta_audio"] = "/audios/pregunta.mp3"
+//     console.log("No hay audio")
+//   }
+//
+//     console.log(pregunta);
+//     callback(pregunta);
+// }
 
 function respondAndRenderTodo(id, res, viewName) {
   if(validId(id)) {

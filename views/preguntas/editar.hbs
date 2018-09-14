@@ -17,9 +17,9 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
       <li ><a href="/preguntas">Preguntas</a></li>
     </ul>
   </div>
-</nav> 
+</nav>
 
-<form class="form" action="/preguntas/{{pregunta.id}}?_method=PUT" method="post">
+<form class="form" action="/preguntas/{{pregunta.id}}?_method=PUT" encType="multipart/form-data" method="post">
   <div class="form-group">
     <label for="title">Pregunta:</label>
     <input type="text" class="form-control" id="nombre" placeholder="Pregunta" name="pregunta" value="{{pregunta.pregunta}}">
@@ -36,7 +36,7 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
       {{/select}}
     </select>
   </div>
-  
+
   <div class="form-group">
     <label for="imagen_opcion_1">Imagen opcion1:</label>
     <img src="{{pregunta.pregunta_1_img}}" alt="" id="pregunta_1_img" width="100" height="100">
