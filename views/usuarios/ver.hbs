@@ -4,10 +4,21 @@ if(localStorage.getItem('usuario') == null || localStorage.getItem('usuario') ==
     console.log("login")
 }</script>
 
-<div class="row justify-content-between bg-light modal-body" id="menu">
-    <div><img src="../../images/Logo.png" width="250px"></div>
-</div>
-<a href="/usuarios" class="btn btn-danger" >Ir lista usuarios</a>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <img class="navbar-brand" src="../../images/Logo.png">
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/admin">Admin</a></li>
+      <li ><a href="/usuarios">Usuarios</a></li>
+      <li ><a href="/excursiones">Excursiones</a></li>
+      <li ><a href="/capitulos">Capitulos</a></li>
+      <li ><a href="/preguntas">Preguntas</a></li>
+    </ul>
+  </div>
+</nav> 
 
 <div class="panel panel-default">
   <div class="panel-heading">

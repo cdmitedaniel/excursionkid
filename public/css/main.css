@@ -52,7 +52,7 @@
 */
 
 #bienvenida{
-    color: #f9e75e;font-family: 'Vibur', cursive;font-size: 30pt;font-weight: 900;text-align: center;}
+    color: #f9e75e;text-shadow: 3px 3px 5px #dd0a35;font-family: 'Chango', cursive;font-size: 30pt;font-weight: 900;text-align: center;}
 #bienvenida span {font-size: 40pt}
 
 /*centra en medio las cosas*/
@@ -115,7 +115,7 @@ transform: rotate(360deg);
 
 .adminLink a{color: white; text-decoration: none;margin: 20px;font-weight: bold}
 
-.btnp{background-color: #f73859;padding: 25px 50px;border-radius: 50px;border: none}
+.btnp{background-color: #f73859;padding: 25px 50px;border-radius: 50px;border: none;font-family: 'Chango', cursive;
 .btn{background-color: #f73859;padding: 10px 20px;border-radius: 20px;border: none}
 
 .linkRegresar{text-align: center;display: block;color: white}

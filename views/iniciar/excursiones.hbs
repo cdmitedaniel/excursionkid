@@ -1,28 +1,30 @@
 <link rel="stylesheet" href="/css/admin.css">
+<link href="https://fonts.googleapis.com/css?family=Chango" rel="stylesheet"> 
 <div class="row justify-content-between bg-light modal-body" id="menu">
 
-    <div><a href="../iniciar"> <img src="../../images/Logo.png" width="250px"></a></div>
+    <div><a href="../iniciar"> <img src="../../images/Logo.png" width="300px"></a></div>
     <div class=" text-right rem">
-        <a href="/iniciar" class="btn btn-success"><span class="fa fa-home "style="font-size: 36px" ></span></a>
-       <a href="/" id="salir" class="btn btn-danger"><span class="fa fa-sign-out" style="font-size: 36px" ></span></a>
+        <a href="/" id="iniciarBt" class="btn btn-danger"> <img src="../../images/home.png" width="70px"></a>
+       <a href="/iniciar" id="salir" class="btn btn-danger"> <img src="../../images/back.png" width="70px"></a>
     </div>
 
-    <div class="text-center bg-info">
-        <h1 class="title">Excursiones</h1>
+    <div class="text-center">
+        <h1 class="titulo1">Excursiones</h1>
     </div>
 </div>
 
     <div class="row " id="excursiones">
     {{#each excursiones}}
-  <div class="col-xs-6 col-md-3">
+  <div class="col-xs-6 col-md-4 exc-div">
+  <br>
     <a href="/iniciar/{{id}}/jugar" class="thumbnail">
       <img src="{{portada}}" class="img-perfil">
     </a>
     <div class="bg-info">
-      <h4 class="text-center">{{titulo}}</h4>
-      <p class="text-center">{{descripcion}}</p>
+      <h2 class="text-center tituEx">{{titulo}}</h2>
+      <h5 class="text-center">{{descripcion}}</h5>
     </div>
-
+<br>
   </div>
 
   {{/each}}

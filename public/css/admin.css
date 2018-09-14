@@ -26,3 +26,23 @@ body{
     background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.5); }
 .ventPop{width: 90%; background-color: white;padding: 50px; margin: 0 auto}
+
+#iniciarBt{color: white;background-color: none;font-family: 'Chango'; font-size: 22pt ; border-radius: 20px; background-color: #ff2e4c; border-radius: 25px; box-shadow: 3px 3px 5px black}
+
+#salir{color: white;background-color: none;font-family: 'Chango'; font-size: 22pt ; border-radius: 20px; background-color: #ff2e4c; border-radius: 25px; box-shadow: 3px 3px 5px black}
+.titulo1{background-color: none;font-family: 'Chango', cursive;font-size: 44pt; color: #eec60a; text-shadow: 3px 3px 5px #dd0a35}
+
+.bg-info{background-color: none;font-family: 'Chango', cursive;font-size: 20pt; background-color: rgb(201, 48, 44); color: white; padding: 5px}
+
+.thumbnail{border: none;background-color: none}
+.thumbnail img {background-color: none}
+.tituEx{border-bottom: 3px solid white}
+
+.titG{font-family: 'Chango', cursive;color:yellow }
+.exc-div{background-color: rgb(201, 48, 44);margin: 5px; border-radius: 20px}
+
+.panel{background-color: rgba(201,48,44,0.6); border: none;}
+
+.paneli{background-color: none; border: none;}
+
+#verpregunta{font-size: 20pt;background-color: rgb(201, 48, 44); border:none; border-radius: 20px;padding: 10px 40px;}
