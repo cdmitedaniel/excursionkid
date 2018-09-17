@@ -42,36 +42,32 @@
       <div class="modal-body">
 
         <div>
-          <label><div class=" jumbotron bg-info w-150 p-3">
+          <label><div class=" jumbotron bg-info w-150 p-3" onclick="comprobarRespuesta(1)">
               <div class="radio">
-          <input type="radio" name="opcion" value="1" id="capitulo-opcion1">
           <img src="" id="capitulo-opcion1-img" width="50" height="50"/>
         </div></div></label>
 
-        <label><div class=" jumbotron bg-info w-75 p-3">
+        <label><div class=" jumbotron bg-info w-75 p-3" onclick="comprobarRespuesta(2)">
               <div class="radio">
-          <input type="radio" name="opcion" value="2" id="capitulo-opcion2">
           <img src="" id="capitulo-opcion2-img" width="50" height="50"/>
         </div></div></label>
 
-        <label><div class=" jumbotron bg-info w-75 p-3">
+        <label><div class=" jumbotron bg-info w-75 p-3" onclick="comprobarRespuesta(3)">
               <div class="radio">
-          <input type="radio" name="opcion" value="3" id="capitulo-opcion3">
           <img src="" id="capitulo-opcion3-img" width="50" height="50"/>
         </div></div></label>
 
-        <label "><div class=" jumbotron bg-info w-75 p-3">
+        <label><div class=" jumbotron bg-info w-75 p-3" onclick="comprobarRespuesta(4)">
               <div class="radio">
-          <input type="radio" name="opcion" value="4" id="capitulo-opcion4">
           <img src="" id="capitulo-opcion4-img" width="50" height="50"/>
         </div></div></label>
         </div>
 
 
       </div>
-      <div class="modal-footer">
+      <!--<div class="modal-footer">
         <button type="button" class="btn btn-default btn-success" data-dismiss="modal" id="verificarRespuesta">Verificar</button>
-      </div>
+      </div>-->
     </div>
 
   </div>
@@ -105,7 +101,7 @@
     </h3>
   </div>
   <div class=" paneli  text-center">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{capitulos.0.youtube_url}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen id="video"></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/{{capitulos.0.youtube_url}}?enablejsapi=1&version=3&playerapiid=ytplayer" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen allowscriptaccess="always" id="video" ></iframe>
   </div>
 <br>
 <h3 class="text-center titG">Más Capitulos</h3>
@@ -123,8 +119,77 @@
     <a href="#" id="verpregunta" class="btn btn-info btn-lg fa fa-music"> ¿?</a>
   </div>
 </div>
-
+<script src="https://www.youtube.com/iframe_api"></script>
 <script>
+
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player( 'video', {
+      events: { 'onStateChange': onPlayerStateChange }
+    });
+  }
+  function onPlayerStateChange(event) {
+        switch(event.data) {
+          case 0:
+            verPregunta()
+            console.log("Termino el video de Youtube");
+            break;
+        }
+  }
+
+  function comprobarRespuesta(r) {
+
+    console.log(r);
+
+    if(r == parseInt(localStorage.getItem("respuesta"))){
+
+        //alert("Respuesta correcta");
+        $("#mp3_src").attr("src", "/audios/acierto.mp3");
+        var audio = $("#audio_pregunta")[0];
+        audio.load();
+        audio.play();
+    }else {
+
+      $("#mp3_src").attr("src", '/audios/incorrecto.mp3');
+      var audio = $("#audio_pregunta")[0];
+      audio.load();
+      audio.play();
+
+      var img_respuesta = "";
+      if(parseInt(localStorage.getItem("respuesta")) == 1){
+        console.log("pregunta_1_img")
+        //$("#img-resultado").attr("src", '{{pregunta.pregunta_1_img}}')
+        img_repuesta = $("#capitulo-opcion1-img").attr("src")
+      }
+
+      if(parseInt(localStorage.getItem("respuesta")) == 2){
+        console.log("pregunta_2_img")
+        //$("#img-resultado").attr("src", '{{pregunta.pregunta_2_img}}')
+        img_repuesta = $("#capitulo-opcion2-img").attr("src")
+      }
+
+      if(parseInt(localStorage.getItem("respuesta")) == 3){
+        console.log("pregunta_3_img")
+        
+        //$("#img-resultado").attr("src", '{{pregunta.pregunta_3_img}}')
+        img_repuesta = $("#capitulo-opcion3-img").attr("src")
+      }
+
+      if(parseInt(localStorage.getItem("respuesta")) == 4){
+        console.log("pregunta_4_img")
+        //$("#img-resultado").attr("src", '{{pregunta.pregunta_4_img}}')
+        img_repuesta = $("#capitulo-opcion4-img").attr("src")
+      }
+
+      console.log(img_respuesta)
+      $("#img-resultado").attr("src", img_repuesta);
+      $("#respuesta").modal('show');
+      
+    }
+    $('#pregunta').modal('toggle');
+    limpiarRadioInput();
+
+  }
+
   function limpiarRadioInput() {
     $("#capitulo-opcion1").attr('checked', true)
     $("#capitulo-opcion2").attr('checked', true)
@@ -140,58 +205,19 @@
   var url = window.location.origin;
   var id = localStorage.getItem('id_nino');
   localStorage.setItem('id_capitulo', {{capitulos.0.id}});
-  $("#verificarRespuesta").on('click', function(e) {
-    e.preventDefault();
-    console.log($("input:checked").val())
-    let opcion = $("input:checked").val();
-    if (opcion != undefined) {
-      if(parseInt(opcion) == parseInt(localStorage.getItem("respuesta"))){
-
-        //alert("Respuesta correcta");
-        $("#mp3_src").attr("src", "/audios/acierto.mp3");
-        var audio = $("#audio_pregunta")[0];
-        audio.load();
-        audio.play();
-        limpiarRadioInput();
-      }else {
-        let respuesta = parseInt(localStorage.getItem("respuesta")); //leer la respuesta del localStorage
-        let img_repuesta = "";
-        if(respuesta ==1) {
-          //Si es la 1era opcion cargo la imagen del elemento #capitulo-opcion1-img con: $("#capitulo-opcion1-img")
-          img_repuesta = $("#capitulo-opcion1-img").attr("src")
-          //alert("Respuesta incorrecta. La respuesta era: ")
-        }
-        if(respuesta ==2) {
-          img_repuesta = $("#capitulo-opcion2-img").attr("src")
-          //alert("Respuesta incorrecta. La respuesta era: ")
-        }
-        if(respuesta ==3) {
-          img_repuesta = $("#capitulo-opcion3-img").attr("src")
-          //alert("Respuesta incorrecta. La respuesta era: ")
-        }
-        if(respuesta ==4) {
-          img_repuesta = $("#capitulo-opcion4-img").attr("src")
-          //alert("Respuesta incorrecta. La respuesta era: ")
-        }
-        $("#respuesta").modal('show');
-        $("#img-resultado").attr("src", img_repuesta);
-        $("#mp3_src").attr("src", "/audios/incorrecto.mp3");
-        var audio = $("#audio_pregunta")[0];
-        audio.load();
-        audio.play();
-        limpiarRadioInput();
-        //console.log(img_repuesta);
-
-      }
-    }else{
-      alert("No haz seleccionado una opcion")
-    }
-    limpiarRadioInput();
-    console.log(opcion)
-  })
 
   $("#verpregunta").on('click', function(e){
     e.preventDefault();
+    verPregunta();
+  });
+
+  function verPregunta() {
+
+    $('#video').each(function(){
+      this.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*')
+    });
+
+
     let id_capitulo = localStorage.getItem('id_capitulo');
     //Consultar la pregunta del capitulo
     $.getJSON( url+"/preguntas/consultar/"+id_capitulo, function( data ) {
@@ -212,7 +238,7 @@
       console.log(data)
     });
 
-  });
+  }
   $.getJSON( url+"/usuarios/"+id+"/puntos", function( data ) {
     console.log("-->"+data)
   });
@@ -231,7 +257,9 @@
           var response = JSON.parse(xhr.responseText);
           console.log(response)
           guardarIDCapitulo(response.id);
-          $("#video").attr("src", "https://www.youtube.com/embed/"+response.youtube_url)
+          $("#video").attr("src", "https://www.youtube.com/embed/"+response.youtube_url+"?enablejsapi=1&version=3&playerapiid=ytplayer");
+
+          onYouTubeIframeAPIReady();
       }
     };
   }
